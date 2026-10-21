@@ -3,11 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-  <title>Видеопрезентация проекта FlatEarthMap (femap.onrender.com)</title>
-  <meta name="description" content="Интерактивная видеопрезентация и подробный разбор функционала картографического и астрономического сервиса femap.onrender.com">
+  <title>FlatEarthMap v6.4.2 — Видеопрезентация и полный научный анализ</title>
+  <meta name="description" content="Полная интерактивная видеопрезентация, математический анализ азимутальной эквидистантной проекции, баллистика МКС и исследование функционала femap.onrender.com">
   <meta name="theme-color" content="#09111c">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
   
+  <!-- KaTeX for crisp mathematical formulas -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+
   <style>
     :root {
       --bg: #09111c;
@@ -254,15 +259,15 @@
       line-height: 1.35;
     }
 
-    /* Explanation Section */
+    /* Section Styling */
     .section-title {
       font-size: clamp(20px, 4.5vw, 24px);
       font-weight: 700;
       color: #fff;
-      margin-bottom: 6px;
+      margin: 35px 0 8px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
     .section-desc {
       color: var(--muted);
@@ -273,7 +278,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 16px;
-      margin-bottom: 35px;
+      margin-bottom: 30px;
     }
     .feature-box {
       background: var(--panel);
@@ -299,54 +304,94 @@
       line-height: 1.5;
     }
 
-    /* Math Proof Card */
-    .math-banner {
-      background: linear-gradient(135deg, #0e1c2e, #13273e);
-      border: 1px solid #23456b;
+    /* Math Deep Dive */
+    .analysis-panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 22px;
+      padding: 26px;
       margin-bottom: 35px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
     }
-    .math-banner h3 {
-      font-size: 17px;
-      color: #fff;
-      margin-bottom: 8px;
+    .formula-block {
+      background: #081220;
+      border-left: 3px solid var(--accent);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 14px 0;
+      font-size: 14.5px;
+      overflow-x: auto;
     }
+    .alert-box {
+      background: rgba(255, 145, 0, 0.08);
+      border: 1px solid rgba(255, 145, 0, 0.35);
+      border-radius: 10px;
+      padding: 16px;
+      margin: 18px 0;
+      font-size: 13.5px;
+      color: #ffd8a8;
+      line-height: 1.55;
+    }
+    .alert-box strong { color: #fff; }
+
+    /* Tables */
     .table-responsive {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
-      margin-top: 10px;
+      margin-top: 14px;
       border-radius: 8px;
       border: 1px solid var(--border);
     }
     .math-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 12.5px;
-      min-width: 280px;
+      font-size: 13px;
+      min-width: 520px;
     }
     .math-table th, .math-table td {
-      padding: 8px 10px;
+      padding: 10px 14px;
       border-bottom: 1px solid var(--border);
       text-align: left;
     }
-    .math-table th { color: var(--accent); background: rgba(0,0,0,0.25); }
+    .math-table th { color: var(--accent); background: rgba(0,0,0,0.3); font-weight: 600; }
+    .math-table tr:hover td { background: rgba(255,255,255,0.02); }
     .math-table .dist-sphere { color: var(--green); font-weight: bold; }
     .math-table .dist-ae { color: var(--orange); font-weight: bold; }
+
+    /* Architecture Grid */
+    .arch-flow {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 15px;
+    }
+    .arch-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .arch-card h5 {
+      color: var(--accent);
+      font-size: 14.5px;
+      margin-bottom: 6px;
+    }
+    .arch-card p {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
 
     /* CTA Section */
     .cta {
       background: linear-gradient(135deg, rgba(0, 210, 255, 0.08), rgba(0, 255, 136, 0.04));
       border: 1px solid rgba(0, 210, 255, 0.25);
       border-radius: 14px;
-      padding: 26px 18px;
+      padding: 28px 20px;
       text-align: center;
+      margin-top: 30px;
     }
     .cta h2 {
-      font-size: clamp(19px, 4.5vw, 24px);
+      font-size: clamp(20px, 4.5vw, 24px);
       color: #fff;
       margin-bottom: 8px;
     }
@@ -354,7 +399,7 @@
       color: var(--muted);
       font-size: clamp(13px, 3.2vw, 15px);
       max-width: 600px;
-      margin: 0 auto 18px;
+      margin: 0 auto 20px;
     }
     .cta-buttons {
       display: flex;
@@ -388,20 +433,9 @@
 
     /* Responsive Breakpoints */
     @media (max-width: 960px) {
-      .video-grid {
-        grid-template-columns: 1fr;
-        gap: 18px;
-      }
-      .chapters-panel {
-        max-height: 320px;
-      }
-      .math-banner {
-        grid-template-columns: 1fr;
-        padding: 18px;
-      }
-      .mobile-bottom-bar {
-        display: block;
-      }
+      .video-grid { grid-template-columns: 1fr; gap: 18px; }
+      .chapters-panel { max-height: 320px; }
+      .mobile-bottom-bar { display: block; }
     }
 
     @media (max-width: 600px) {
@@ -414,6 +448,7 @@
       .cards-grid { grid-template-columns: 1fr; gap: 12px; }
       .cta-buttons .btn { width: 100%; }
       .chapter-card { padding: 8px 10px; }
+      .analysis-panel { padding: 18px 14px; }
     }
   </style>
 </head>
@@ -423,7 +458,7 @@
   <nav>
     <div class="brand">
       🎬 FlatEarthMap <span>v6.4.2</span>
-      <span class="badge">Видеопрезентация</span>
+      <span class="badge">Видеопрезентация & Научный анализ</span>
     </div>
     <div class="nav-actions">
       <a href="https://femap.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">🌐 femap.onrender.com ↗</a>
@@ -436,7 +471,7 @@
     <!-- Notice Banner -->
     <div class="target-banner">
       <div class="target-banner-text">
-        📌 <strong>Сайт-видеопрезентация.</strong> Сам интерактивный картографический сервис доступен на официальном хостинге:
+        📌 <strong>Сайт-видеопрезентация и исследование.</strong> Сам интерактивный веб-сервис доступен на официальном хостинге:
       </div>
       <a href="https://femap.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding:7px 14px; font-size:13px; flex-shrink:0;">
         Открыть femap.onrender.com ↗
@@ -445,8 +480,8 @@
 
     <!-- Hero Header -->
     <header class="hero">
-      <h1>Видеопрезентация проекта <span>FlatEarthMap</span></h1>
-      <p>Полный 6-минутный разбор функционала картографического и астрономического движка сайта <a href="https://femap.onrender.com/" target="_blank">femap.onrender.com</a>: азимутальная проекция, геодезическая линейка, реальные авиарейсы, баллистика МКС и небесная механика.</p>
+      <h1>Видеопрезентация и обзор проекта <span>FlatEarthMap</span></h1>
+      <p>Полный 6-минутный разбор функционала картографического и астрономического движка сайта <a href="https://femap.onrender.com/" target="_blank">femap.onrender.com</a>: азимутальная эквидистантная проекция, геодезическая линейка, реальные трансокеанские авиарейсы, баллистика МКС и небесная механика.</p>
     </header>
 
     <!-- Video & Interactive Chapters -->
@@ -509,14 +544,14 @@
     </div>
 
     <!-- Feature Walkthrough Grid -->
-    <h2 class="section-title">🔍 Как устроен и работает сайт</h2>
-    <p class="section-desc">Ключевые инженерные модули, математические модели и инструменты визуализации платформы:</p>
+    <h2 class="section-title">🔍 Ключевой функционал сайта femap.onrender.com</h2>
+    <p class="section-desc">Основные инженерные инструменты и возможности платформы:</p>
 
     <div class="cards-grid">
       <div class="feature-box">
         <span class="feature-icon">📐</span>
         <h4>Азимутальная проекция</h4>
-        <p>Динамическое переключение центра на <a href="https://femap.onrender.com/" target="_blank">femap.onrender.com</a>: Северный полюс (карта Глисона), Южный полюс (инверсия), Экватор или любые произвольные координаты.</p>
+        <p>Динамическое переключение центра на <a href="https://femap.onrender.com/" target="_blank">femap.onrender.com</a>: Северный полюс (карта Глисона), Южный полюс (инверсия с Антарктидой в центре), Экватор или любые произвольные координаты.</p>
       </div>
 
       <div class="feature-box">
@@ -550,62 +585,132 @@
       </div>
     </div>
 
-    <!-- Math Comparison Banner -->
-    <div class="math-banner">
-      <div>
-        <h3>📐 Математика искажений карты</h3>
-        <p style="color:var(--muted); font-size:13.5px; margin-bottom:10px;">
-          На плоской азимутальной карте параллели южного полушария растягиваются в гигантские кольца. Длина параллели растёт линейно, тогда как на реальной сфере она сжимается пропорционально $\cos\phi$:
-        </p>
-        <p style="font-family:monospace; color:var(--accent); font-size:14px; background:rgba(0,0,0,0.3); padding:8px 12px; border-radius:6px; display:inline-block;">
-          k = (π/2 - φ) / cos(φ)
-        </p>
-        <p style="color:var(--muted); font-size:13px; margin-top:8px;">
-          На 60° южной широты масштаб искажения превышает <b>500%</b>!
-        </p>
+    <!-- Detailed Mathematical Analysis Section -->
+    <div class="analysis-panel">
+      <h2 class="section-title" style="margin-top:0;">📐 Математика Азимутальной Эквидистантной Проекции</h2>
+      <p style="color:var(--muted); font-size:14px; margin-bottom:14px;">
+        В азимутальной эквидистантной проекции с центром в точке $(\phi_0, \lambda_0)$ азимут $\alpha$ из центра на любую точку сохраняется без искажений, а расстояние $\rho$ на плоскости строго пропорционально угловому расстоянию $c$ на сфере (дуге большого круга):
+      </p>
+
+      <div class="formula-block">
+        $$\tan \alpha = \frac{\cos \phi \sin(\lambda - \lambda_0)}{\cos \phi_0 \sin \phi - \sin \phi_0 \cos \phi \cos(\lambda - \lambda_0)}$$
+        $$\cos c = \sin \phi_0 \sin \phi + \cos \phi_0 \cos \phi \cos(\lambda - \lambda_0), \quad \rho = R \cdot c$$
       </div>
 
-      <div>
-        <h3>✈ Реальные дистанции перелётов</h3>
-        <div class="table-responsive">
-          <table class="math-table">
-            <thead>
-              <tr>
-                <th>Маршрут</th>
-                <th>Сфера (Реальность)</th>
-                <th>Карта (Плоская AE)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Сидней → Сантьяго</td>
-                <td class="dist-sphere">11 350 км (~12.5 ч)</td>
-                <td class="dist-ae">25 600 км (+125%)</td>
-              </tr>
-              <tr>
-                <td>Йоханнесбург → Перт</td>
-                <td class="dist-sphere">8 310 км (~10 ч)</td>
-                <td class="dist-ae">19 200 км (+131%)</td>
-              </tr>
-              <tr>
-                <td>Лондон → Нью-Йорк</td>
-                <td class="dist-sphere">5 570 км (~7 ч)</td>
-                <td class="dist-ae">5 900 км (+6%)</td>
-              </tr>
-            </tbody>
-          </table>
+      <h3 style="font-size:18px; color:#fff; margin:20px 0 8px;">Природа неизбежных искажений карты</h3>
+      <p style="color:var(--muted); font-size:14px;">
+        При центрировании проекции на Северном полюсе ($\phi_0 = 90^\circ$ — классическая карта Александра Глисона 1892 года):
+      </p>
+      <ul style="margin: 10px 0 10px 22px; color:var(--text); font-size:14px; line-height:1.7;">
+        <li><b>Меридианы</b> превращаются в прямые расходящиеся лучи из центра.</li>
+        <li><b>Параллели</b> становятся концентрическими окружностями с радиусом $r = R \cdot (\frac{\pi}{2} - \phi)$.</li>
+        <li><b>Периферийное растяжение:</b> на реальной сферической Земле длина параллели равна $2\pi R \cos \phi$. Однако на плоской карте её длина равна $2\pi r = 2\pi R (\frac{\pi}{2} - \phi)$.</li>
+      </ul>
+
+      <p style="color:var(--muted); font-size:14px; margin-top:10px;">
+        Коэффициент тангенциального растяжения вдоль параллелей описывается формулой:
+      </p>
+
+      <div class="formula-block">
+        $$k_t = \frac{\frac{\pi}{2} - \phi}{\cos \phi}$$
+      </div>
+
+      <p style="color:var(--muted); font-size:14px;">
+        • На экваторе ($\phi = 0^\circ$): $k_t = \frac{\pi/2}{1} \approx 1.57$ (растяжение на 57%).<br>
+        • На $60^\circ$ южной широты ($\phi = -60^\circ$): $k_t = \frac{5\pi/6}{0.5} \approx 5.24$ (<b>растяжение более чем в 5 раз!</b>).<br>
+        • На Южном полюсе ($\phi = -90^\circ$): географическая точка полюса вырождается в гигантскую окружность по всему периметру диска!
+      </p>
+
+      <!-- Flight Routes Debate -->
+      <h3 style="font-size:18px; color:#fff; margin:26px 0 8px;">✈ Южные авиарейсы — решающий аргумент геодезии</h3>
+      <p style="color:var(--muted); font-size:14px;">
+        В дебатах о форме Земли регулярные трансокеанские рейсы южного полушария служат неопровержимым доказательством сферичности. Сравнение расстояния по сфере и на карте плоской Земли (AE):
+      </p>
+
+      <div class="table-responsive">
+        <table class="math-table">
+          <thead>
+            <tr>
+              <th>Маршрут</th>
+              <th>Авиакомпания / Рейс</th>
+              <th>Сфера (Реальность)</th>
+              <th>Плоская карта (AE)</th>
+              <th>Искажение</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Сидней → Сантьяго</b></td>
+              <td>Qantas / LATAM QF27</td>
+              <td class="dist-sphere">11 350 км (~12.5 ч)</td>
+              <td class="dist-ae">25 600 км</td>
+              <td style="color:var(--orange);"><b>+125% (в 2.25 раза)</b></td>
+            </tr>
+            <tr>
+              <td><b>Йоханнесбург → Перт</b></td>
+              <td>South African Airways</td>
+              <td class="dist-sphere">8 310 км (~10 ч)</td>
+              <td class="dist-ae">19 200 км</td>
+              <td style="color:var(--orange);"><b>+131% (в 2.3 раза)</b></td>
+            </tr>
+            <tr>
+              <td><b>Кейптаун → Буэнос-Айрес</b></td>
+              <td>SAA SA225</td>
+              <td class="dist-sphere">6 900 км (~8.5 ч)</td>
+              <td class="dist-ae">14 800 км</td>
+              <td style="color:var(--orange);"><b>+114% (в 2.1 раза)</b></td>
+            </tr>
+            <tr>
+              <td><b>Лондон → Нью-Йорк</b></td>
+              <td>Трансатлантический</td>
+              <td class="dist-sphere">5 570 км (~7.5 ч)</td>
+              <td class="dist-ae">5 900 км</td>
+              <td style="color:var(--green);"><b>+6% (малое на севере)</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="alert-box">
+        ⚠️ <strong>Авиационный парадокс плоской Земли:</strong> если бы Земля была плоской по модели карты Глисона, пассажирский лайнер Boeing 787 или Airbus A350 рейса Сидней — Сантьяго должен был бы лететь со скоростью свыше <b>2 050 км/ч</b> (быстрее сверхзвукового «Конкорда»), чтобы преодолеть 25 600 км за 12.5 часов. В реальности лайнеры летят со стандартной крейсерской скоростью ~900 км/ч по короткой дуге большого круга над Южным океаном.
+      </div>
+    </div>
+
+    <!-- Software Architecture -->
+    <div class="analysis-panel">
+      <h2 class="section-title" style="margin-top:0;">💻 Архитектура и стек оригинального проекта</h2>
+      <p style="color:var(--muted); font-size:14px; margin-bottom:15px;">
+        Приложение <a href="https://femap.onrender.com/" target="_blank">femap.onrender.com</a> построено на принципах модульного чистого JavaScript (ES6+) без тяжелых фреймворков (React, Angular, Vue), что обеспечивает мгновенный рендеринг SVG и низкое потребление памяти:
+      </p>
+
+      <div class="arch-flow">
+        <div class="arch-card">
+          <h5>D3.js v7 Core</h5>
+          <p>Математические проекции <code>d3.geoAzimuthalEquidistant</code>, расчёт путей <code>d3.geoPath</code>, зум и панорамирование.</p>
+        </div>
+        <div class="arch-card">
+          <h5>Astronomy Engine v2</h5>
+          <p>Вычисление координат небесных тел, подсолнечной точки, фаз освещения Луны и предиктора затмений.</p>
+        </div>
+        <div class="arch-card">
+          <h5>Satellite.js v4.1</h5>
+          <p>Баллистическая модель <b>SGP4</b> для расчёта орбиты и телеметрии МКС по реальным двухстрочным элементам TLE.</p>
+        </div>
+        <div class="arch-card">
+          <h5>CelesTrak GP API</h5>
+          <p>Автоматическая подгрузка свежих параметров орбиты МКС (NORAD CATNR 25544) напрямую в браузер.</p>
         </div>
       </div>
     </div>
 
     <!-- Call to action -->
     <div class="cta">
-      <h2>Попробуйте проект вживую</h2>
+      <h2>Исследуйте проект в действии</h2>
       <p>Оригинальный интерактивный проект с полным набором инструментов доступен онлайн на официальном хостинге:</p>
       <div class="cta-buttons">
-        <a href="https://femap.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:15px; padding:12px 20px;">🌐 Открыть femap.onrender.com ↗</a>
-        <a href="assets/presentation.mp4" download class="btn btn-secondary" style="font-size:15px; padding:12px 20px;">⬇ Скачать видео (1080p, 38 МБ)</a>
-        <a href="https://github.com/ALEVOLDON/FlatEarthMap" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size:15px; padding:12px 20px;">⭐ Код на GitHub</a>
+        <a href="https://femap.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:15px; padding:12px 22px;">🌐 Открыть femap.onrender.com ↗</a>
+        <a href="assets/presentation.mp4" download class="btn btn-secondary" style="font-size:15px; padding:12px 22px;">⬇ Скачать видео (1080p, 38 МБ)</a>
+        <a href="https://github.com/ALEVOLDON/FlatEarthMap" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size:15px; padding:12px 22px;">⭐ Код на GitHub</a>
       </div>
     </div>
 
