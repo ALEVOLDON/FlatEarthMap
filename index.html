@@ -11,7 +11,7 @@
   <!-- KaTeX for crisp mathematical formulas -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}] });"></script>
 
   <style>
     :root {
@@ -274,34 +274,103 @@
       margin-bottom: 22px;
       font-size: clamp(13px, 3.2vw, 15px);
     }
+    /* Features Section: 3x2 Grid on Desktop, Swipe Carousel on Mobile */
+    .cards-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .cards-carousel-nav {
+      display: none; /* hidden on desktop */
+      align-items: center;
+      gap: 8px;
+    }
+    .carousel-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .carousel-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: #142439;
+    }
+    .carousel-btn:active {
+      transform: scale(0.92);
+    }
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
       margin-bottom: 30px;
     }
     .feature-box {
       background: var(--panel);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 20px;
+      padding: 22px;
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .feature-box:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0, 210, 255, 0.45);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
     }
     .feature-icon {
-      font-size: 26px;
-      margin-bottom: 10px;
+      font-size: 28px;
+      margin-bottom: 12px;
       display: inline-block;
     }
     .feature-box h4 {
       font-size: 16px;
       color: #fff;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
     .feature-box p {
       font-size: 13.5px;
       color: var(--muted);
-      line-height: 1.5;
+      line-height: 1.55;
+      margin: 0;
+      flex-grow: 1;
+    }
+    .carousel-dots {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      margin: -14px 0 28px;
+    }
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.22);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .carousel-dot.active {
+      width: 24px;
+      border-radius: 4px;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent-glow);
     }
 
     /* Math Deep Dive */
@@ -438,6 +507,34 @@
       .mobile-bottom-bar { display: block; }
     }
 
+    @media (max-width: 860px) {
+      .cards-carousel-nav {
+        display: flex;
+      }
+      .cards-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 14px;
+        padding: 4px 16px 16px;
+        margin: 0 -16px 16px;
+        scrollbar-width: none;
+      }
+      .cards-grid::-webkit-scrollbar {
+        display: none;
+      }
+      .feature-box {
+        flex: 0 0 84%;
+        max-width: 320px;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+      }
+      .carousel-dots {
+        display: flex;
+      }
+    }
+
     @media (max-width: 600px) {
       nav { padding: 10px 14px; }
       .brand { font-size: 15px; }
@@ -445,7 +542,6 @@
       .nav-actions .btn-secondary { display: none; }
       .nav-actions .btn-primary { font-size: 13px; padding: 6px 12px; min-height: 36px; }
       .container { padding: 16px 12px 30px; }
-      .cards-grid { grid-template-columns: 1fr; gap: 12px; }
       .cta-buttons .btn { width: 100%; }
       .chapter-card { padding: 8px 10px; }
       .analysis-panel { padding: 18px 14px; }
@@ -543,11 +639,19 @@
       </div>
     </div>
 
-    <!-- Feature Walkthrough Grid -->
-    <h2 class="section-title">🔍 Ключевой функционал сайта femap.onrender.com</h2>
-    <p class="section-desc">Основные инженерные инструменты и возможности платформы:</p>
+    <!-- Feature Walkthrough Grid / Mobile Carousel -->
+    <div class="cards-section-header">
+      <div>
+        <h2 class="section-title" style="margin-bottom:4px;">🔍 Ключевой функционал сайта femap.onrender.com</h2>
+        <p class="section-desc" style="margin-bottom:0;">Основные инженерные инструменты и возможности платформы:</p>
+      </div>
+      <div class="cards-carousel-nav" aria-label="Навигация по карточкам">
+        <button class="carousel-btn" onclick="scrollCards(-1)" aria-label="Предыдущий слайд">‹</button>
+        <button class="carousel-btn" onclick="scrollCards(1)" aria-label="Следующий слайд">›</button>
+      </div>
+    </div>
 
-    <div class="cards-grid">
+    <div class="cards-grid" id="featuresCarousel">
       <div class="feature-box">
         <span class="feature-icon">📐</span>
         <h4>Азимутальная проекция</h4>
@@ -557,7 +661,7 @@
       <div class="feature-box">
         <span class="feature-icon">📏</span>
         <h4>Геодезическая линейка</h4>
-        <p>Инструмент с магнитным захватом 25px. Сравнивает дугу большого круга на сфере ($R=6371$ км) и плоское евклидово расстояние на карте.</p>
+        <p>Инструмент с магнитным захватом 25px. Сравнивает дугу большого круга на сфере ($R = 6371\text{ км}$) и плоское евклидово расстояние на карте.</p>
       </div>
 
       <div class="feature-box">
@@ -584,6 +688,9 @@
         <p>13 созвездий IAU (включая Змееносец), звёзды до 5.0m и галактические изофоты с определением созвездия каждого светила.</p>
       </div>
     </div>
+
+    <!-- Mobile Carousel Dots -->
+    <div class="carousel-dots" id="carouselDots" aria-hidden="true"></div>
 
     <!-- Detailed Mathematical Analysis Section -->
     <div class="analysis-panel">
@@ -733,6 +840,43 @@
         el.classList.add('active');
         el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
+    }
+
+    // Mobile Features Carousel Controls & Dots
+    const cardsCarousel = document.getElementById('featuresCarousel');
+    const dotsContainer = document.getElementById('carouselDots');
+    const featureCards = document.querySelectorAll('.feature-box');
+
+    if (cardsCarousel && dotsContainer && featureCards.length) {
+      dotsContainer.innerHTML = '';
+      featureCards.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', `Слайд ${i + 1}`);
+        dot.addEventListener('click', () => {
+          featureCards[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        });
+        dotsContainer.appendChild(dot);
+      });
+
+      cardsCarousel.addEventListener('scroll', () => {
+        const scrollLeft = cardsCarousel.scrollLeft;
+        const cardWidth = featureCards[0].offsetWidth + 14;
+        const activeIndex = Math.min(
+          featureCards.length - 1,
+          Math.max(0, Math.round(scrollLeft / cardWidth))
+        );
+        const dots = dotsContainer.querySelectorAll('.carousel-dot');
+        dots.forEach((d, idx) => {
+          d.classList.toggle('active', idx === activeIndex);
+        });
+      }, { passive: true });
+    }
+
+    function scrollCards(direction) {
+      if (!cardsCarousel) return;
+      const cardWidth = cardsCarousel.querySelector('.feature-box').offsetWidth + 14;
+      cardsCarousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
     }
   </script>
 </body>
