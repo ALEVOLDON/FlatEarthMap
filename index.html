@@ -6,7 +6,7 @@
   <title>FlatEarthMap v6.4.2 — Видеопрезентация и полный научный анализ</title>
   <meta name="description" content="Полная интерактивная видеопрезентация, математический анализ азимутальной эквидистантной проекции, баллистика МКС и исследование функционала femap.onrender.com">
   <meta name="theme-color" content="#09111c">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%2300d2ff%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22M4 11v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8H4Z%22/><path d=%22m4 11 16-6%22/><path d=%22m8.5 4.5 1.5 4%22/><path d=%22m14 3 1.5 4%22/><path d=%22M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6H4V5Z%22/></svg>">
   
   <!-- KaTeX for crisp mathematical formulas -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
@@ -370,11 +370,47 @@
       border-color: rgba(0, 210, 255, 0.45);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
     }
-    .feature-icon {
-      font-size: 28px;
-      margin-bottom: 12px;
+    /* SVG Icon System */
+    .icon {
+      width: 1.15em;
+      height: 1.15em;
+      vertical-align: -0.18em;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
       display: inline-block;
+      flex-shrink: 0;
     }
+    .icon-accent { stroke: var(--accent); }
+    .icon-orange { stroke: var(--orange); }
+    .icon-green { stroke: var(--green); }
+    
+    .feature-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(0, 210, 255, 0.08);
+      border: 1px solid rgba(0, 210, 255, 0.22);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      color: var(--accent);
+      transition: all 0.25s ease;
+    }
+    .feature-box:hover .feature-icon-box {
+      background: rgba(0, 210, 255, 0.2);
+      border-color: var(--accent);
+      box-shadow: 0 0 16px var(--accent-glow);
+      transform: scale(1.06);
+    }
+    .feature-icon-box svg {
+      width: 24px;
+      height: 24px;
+    }
+
     .feature-box h4 {
       font-size: 16px;
       color: #fff;
@@ -589,12 +625,19 @@
   <!-- Top Navigation -->
   <nav>
     <div class="brand">
-      🎬 FlatEarthMap <span>v6.4.2</span>
+      <svg class="icon icon-accent" viewBox="0 0 24 24"><path d="M4 11v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8H4Z"/><path d="m4 11 16-6"/><path d="m8.5 4.5 1.5 4"/><path d="m14 3 1.5 4"/><path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6H4V5Z"/></svg>
+      FlatEarthMap <span>v6.4.2</span>
       <span class="badge">Видеопрезентация & Научный анализ</span>
     </div>
     <div class="nav-actions">
-      <a href="https://femap.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">🌐 femap.onrender.com ↗</a>
-      <a href="https://github.com/ALEVOLDON/FlatEarthMap" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">⭐ GitHub</a>
+      <a href="https://femap.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        femap.onrender.com ↗
+      </a>
+      <a href="https://github.com/ALEVOLDON/FlatEarthMap" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+        <svg class="icon icon-orange" viewBox="0 0 24 24" style="fill:rgba(255,145,0,0.25);"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        GitHub
+      </a>
     </div>
   </nav>
 
@@ -603,7 +646,8 @@
     <!-- Hero Header -->
     <header class="hero">
       <div class="hero-badge">
-        <span>🎬 Презентационный хаб</span>
+        <svg class="icon icon-accent" viewBox="0 0 24 24"><path d="M4 11v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8H4Z"/><path d="m4 11 16-6"/><path d="m8.5 4.5 1.5 4"/><path d="m14 3 1.5 4"/><path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6H4V5Z"/></svg>
+        <span>Презентационный хаб</span>
         <span style="opacity:0.4;">•</span>
         <span>Оригинальное веб-приложение: <a href="https://femap.onrender.com/" target="_blank" rel="noopener noreferrer">femap.onrender.com ↗</a></span>
       </div>
@@ -622,7 +666,7 @@
 
       <div class="chapters-panel">
         <div class="chapters-header">
-          <h3>⏱ Главы видео</h3>
+          <h3><svg class="icon icon-accent" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Главы видео</h3>
           <span style="font-size:12px; color:var(--muted);">10 глав • 4:35 мин</span>
         </div>
         <div class="chapters-list">
@@ -673,7 +717,10 @@
     <!-- Feature Walkthrough Grid / Mobile Carousel -->
     <div class="cards-section-header">
       <div>
-        <h2 class="section-title" style="margin-bottom:4px;">🔍 Ключевой функционал сайта femap.onrender.com</h2>
+        <h2 class="section-title" style="margin-bottom:4px;">
+          <svg class="icon icon-accent" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Ключевой функционал сайта femap.onrender.com
+        </h2>
         <p class="section-desc" style="margin-bottom:0;">Основные инженерные инструменты и возможности платформы:</p>
       </div>
       <div class="cards-carousel-nav" aria-label="Навигация по карточкам">
@@ -684,37 +731,49 @@
 
     <div class="cards-grid" id="featuresCarousel">
       <div class="feature-box">
-        <span class="feature-icon">📐</span>
+        <div class="feature-icon-box">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/><circle cx="12" cy="12" r="2.5"/></svg>
+        </div>
         <h4>Азимутальная проекция</h4>
         <p>Динамическое переключение центра на <a href="https://femap.onrender.com/" target="_blank">femap.onrender.com</a>: Северный полюс (карта Глисона), Южный полюс (инверсия с Антарктидой в центре), Экватор или любые произвольные координаты.</p>
       </div>
 
       <div class="feature-box">
-        <span class="feature-icon">📏</span>
+        <div class="feature-icon-box">
+          <svg class="icon" viewBox="0 0 24 24"><path d="m21.3 8.7-6.6-6.6a2 2 0 0 0-2.8 0L2.7 11.3a2 2 0 0 0 0 2.8l6.6 6.6a2 2 0 0 0 2.8 0l9.2-9.2a2 2 0 0 0 0-2.8Z"/><path d="m7.5 10.5 1.5 1.5"/><path d="m10.5 7.5 1.5 1.5"/><path d="m13.5 4.5 1.5 1.5"/><path d="m10.5 13.5 1.5 1.5"/><path d="m13.5 10.5 1.5 1.5"/><path d="m16.5 7.5 1.5 1.5"/></svg>
+        </div>
         <h4>Геодезическая линейка</h4>
         <p>Инструмент с магнитным захватом 25px. Сравнивает дугу большого круга на сфере ($R = 6371\text{ км}$) и плоское евклидово расстояние на карте.</p>
       </div>
 
       <div class="feature-box">
-        <span class="feature-icon">✈</span>
+        <div class="feature-icon-box">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.3c.4-.2.6-.6.5-1.1Z"/></svg>
+        </div>
         <h4>Южные авиарейсы</h4>
         <p>Реальные беспосадочные маршруты (Сидней — Сантьяго, Йоханнесбург — Перт). Доказывают невозможность плоской модели на юге.</p>
       </div>
 
       <div class="feature-box">
-        <span class="feature-icon">☀</span>
+        <div class="feature-icon-box">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+        </div>
         <h4>Астрономия и Затмения</h4>
         <p>Движок Astronomy Engine v2: положение Солнца, терминатор день/ночь, фазы Луны и алгоритмический предиктор затмений.</p>
       </div>
 
       <div class="feature-box">
-        <span class="feature-icon">🛰</span>
+        <div class="feature-icon-box">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M13 7 9 3 5 7l4 4"/><path d="m17 11 4 4-4 4-4-4"/><path d="m8 12 4 4"/><path d="m16 8-4-4"/><path d="M9 21a6 6 0 0 0 6-6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
         <h4>Баллистика МКС (SGP4)</h4>
         <p>Загрузка живых TLE NORAD с серверов CelesTrak. Вычисление высоты (~420 км) и скорости (27 600 км/ч) с ускорением витков до ×100.</p>
       </div>
 
       <div class="feature-box">
-        <span class="feature-icon">🌌</span>
+        <div class="feature-icon-box">
+          <svg class="icon" viewBox="0 0 24 24"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/><circle cx="19" cy="5" r="1.5"/><circle cx="5" cy="19" r="1.5"/></svg>
+        </div>
         <h4>Зодиак и Млечный Путь</h4>
         <p>13 созвездий IAU (включая Змееносец), звёзды до 5.0m и галактические изофоты с определением созвездия каждого светила.</p>
       </div>
@@ -725,7 +784,10 @@
 
     <!-- Detailed Mathematical Analysis Section -->
     <div class="analysis-panel">
-      <h2 class="section-title" style="margin-top:0;">📐 Математика Азимутальной Эквидистантной Проекции</h2>
+      <h2 class="section-title" style="margin-top:0;">
+        <svg class="icon icon-accent" viewBox="0 0 24 24"><path d="M4 4h16l-8 8 8 8H4"/><path d="m7 12 2-2"/></svg>
+        Математика Азимутальной Эквидистантной Проекции
+      </h2>
       <p style="color:var(--muted); font-size:14px; margin-bottom:14px;">
         В азимутальной эквидистантной проекции с центром в точке $(\phi_0, \lambda_0)$ азимут $\alpha$ из центра на любую точку сохраняется без искажений, а расстояние $\rho$ на плоскости строго пропорционально угловому расстоянию $c$ на сфере (дуге большого круга):
       </p>
@@ -760,7 +822,10 @@
       </p>
 
       <!-- Flight Routes Debate -->
-      <h3 style="font-size:18px; color:#fff; margin:26px 0 8px;">✈ Южные авиарейсы — решающий аргумент геодезии</h3>
+      <h3 style="font-size:18px; color:#fff; margin:26px 0 8px;">
+        <svg class="icon icon-accent" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.3c.4-.2.6-.6.5-1.1Z"/></svg>
+        Южные авиарейсы — решающий аргумент геодезии
+      </h3>
       <p style="color:var(--muted); font-size:14px;">
         В дебатах о форме Земли регулярные трансокеанские рейсы южного полушария служат неопровержимым доказательством сферичности. Сравнение расстояния по сфере и на карте плоской Земли (AE):
       </p>
@@ -810,13 +875,17 @@
       </div>
 
       <div class="alert-box">
-        ⚠️ <strong>Авиационный парадокс плоской Земли:</strong> если бы Земля была плоской по модели карты Глисона, пассажирский лайнер Boeing 787 или Airbus A350 рейса Сидней — Сантьяго должен был бы лететь со скоростью свыше <b>2 050 км/ч</b> (быстрее сверхзвукового «Конкорда»), чтобы преодолеть 25 600 км за 12.5 часов. В реальности лайнеры летят со стандартной крейсерской скоростью ~900 км/ч по короткой дуге большого круга над Южным океаном.
+        <svg class="icon icon-orange" viewBox="0 0 24 24" style="margin-right:6px;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <strong>Авиационный парадокс плоской Земли:</strong> если бы Земля была плоской по модели карты Глисона, пассажирский лайнер Boeing 787 или Airbus A350 рейса Сидней — Сантьяго должен был бы лететь со скоростью свыше <b>2 050 км/ч</b> (быстрее сверхзвукового «Конкорда»), чтобы преодолеть 25 600 км за 12.5 часов. В реальности лайнеры летят со стандартной крейсерской скоростью ~900 км/ч по короткой дуге большого круга над Южным океаном.
       </div>
     </div>
 
     <!-- Software Architecture -->
     <div class="analysis-panel">
-      <h2 class="section-title" style="margin-top:0;">💻 Архитектура и стек оригинального проекта</h2>
+      <h2 class="section-title" style="margin-top:0;">
+        <svg class="icon icon-accent" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 8 3 3-3 3"/><line x1="15" x2="15" y1="17" y2="17"/></svg>
+        Архитектура и стек оригинального проекта
+      </h2>
       <p style="color:var(--muted); font-size:14px; margin-bottom:15px;">
         Приложение <a href="https://femap.onrender.com/" target="_blank">femap.onrender.com</a> построено на принципах модульного чистого JavaScript (ES6+) без тяжелых фреймворков (React, Angular, Vue), что обеспечивает мгновенный рендеринг SVG и низкое потребление памяти:
       </p>
@@ -846,9 +915,18 @@
       <h2>Исследуйте проект в действии</h2>
       <p>Оригинальный интерактивный проект с полным набором инструментов доступен онлайн на официальном хостинге:</p>
       <div class="cta-buttons">
-        <a href="https://femap.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:15px; padding:12px 22px;">🌐 Открыть femap.onrender.com ↗</a>
-        <a href="assets/presentation.mp4" download class="btn btn-secondary" style="font-size:15px; padding:12px 22px;">⬇ Скачать видео (1080p, 29 МБ)</a>
-        <a href="https://github.com/ALEVOLDON/FlatEarthMap" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size:15px; padding:12px 22px;">⭐ Код на GitHub</a>
+        <a href="https://femap.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:15px; padding:12px 22px;">
+          <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+          Открыть femap.onrender.com ↗
+        </a>
+        <a href="assets/presentation.mp4" download class="btn btn-secondary" style="font-size:15px; padding:12px 22px;">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Скачать видео (1080p, 29 МБ)
+        </a>
+        <a href="https://github.com/ALEVOLDON/FlatEarthMap" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size:15px; padding:12px 22px;">
+          <svg class="icon icon-orange" viewBox="0 0 24 24" style="fill:rgba(255,145,0,0.25);"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Код на GitHub
+        </a>
       </div>
     </div>
 
@@ -857,7 +935,8 @@
   <!-- Mobile Sticky Bottom Action Bar -->
   <aside class="mobile-bottom-bar" aria-label="Быстрый переход">
     <a href="https://femap.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-      🌐 Открыть femap.onrender.com ↗
+      <svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+      Открыть femap.onrender.com ↗
     </a>
   </aside>
 
