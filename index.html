@@ -215,13 +215,47 @@
       color: var(--accent);
       font-weight: 700;
     }
+    /* Global Custom Scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(9, 17, 28, 0.6);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(0, 210, 255, 0.25);
+      border-radius: 6px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent);
+    }
+
     .chapters-list {
       overflow-y: auto;
       display: flex;
       flex-direction: column;
       gap: 6px;
-      padding-right: 4px;
+      padding-right: 6px;
       -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0, 210, 255, 0.35) rgba(10, 18, 30, 0.6);
+    }
+    .chapters-list::-webkit-scrollbar {
+      width: 6px;
+    }
+    .chapters-list::-webkit-scrollbar-track {
+      background: rgba(10, 18, 30, 0.6);
+      border-radius: 10px;
+    }
+    .chapters-list::-webkit-scrollbar-thumb {
+      background: rgba(0, 210, 255, 0.35);
+      border-radius: 10px;
+      transition: background 0.2s ease, box-shadow 0.2s ease;
+    }
+    .chapters-list::-webkit-scrollbar-thumb:hover {
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent-glow);
     }
     .chapter-card {
       display: flex;
