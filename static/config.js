@@ -449,8 +449,8 @@ var CITIES = [
 var GRID_STEP = [30, 30];
 
 /* URL GeoJSON данных */
-var LAND_URL    = '/data/land.geojson';
-var BORDERS_URL = '/data/borders.geojson?v=641';
+var LAND_URL    = 'data/land.geojson';
+var BORDERS_URL = 'data/borders.geojson?v=641';
 
 /* ── Млечный Путь (v5.9.0) ──────────────────────────────────────
    Данные: d3-celestial (Olaf Frohn), лицензия BSD-3 — см.
@@ -464,7 +464,7 @@ var BORDERS_URL = '/data/borders.geojson?v=641';
    так кадр анимации рисуется в ~3.5 раза быстрее.
    Загружается лениво — при первом включении чекбокса (~150 КБ).
 ══════════════════════════════════════════════════════════════════ */
-var MILKYWAY_URL = '/data/milkyway.json';
+var MILKYWAY_URL = 'data/milkyway.json';
 
 /* Цвет заливки и прозрачность контуров по порядку ol1..ol5.
    Контуры вложены друг в друга, прозрачности складываются —
@@ -486,13 +486,13 @@ var MILKYWAY_STYLE = {
        длинных рёбер (до 26°) дало бы заметную ошибку.
    Загружается лениво при первом включении чекбокса (~35 КБ).
 ══════════════════════════════════════════════════════════════════ */
-var ZODIAC_URL = '/data/zodiac.json';
+var ZODIAC_URL = 'data/zodiac.json';
 
 /* Звёзды (до 5.0 m) в границах 13 созвездий и линии их фигур
    (constellations.lines, d3-celestial). Формат:
    { stars: { Ari: [[ra, dec, mag], …], … }, lines: { Ari: [[[ra,dec],…], …], … } }
    (~11 КБ). Если файла нет — зодиак работает без звёзд. */
-var ZODIAC_STARS_URL = '/data/zodiac-stars.json';
+var ZODIAC_STARS_URL = 'data/zodiac-stars.json';
 
 /* Размер звезды (диаметр, px) по звёздной величине: первое подходящее
    условие mag < max. Линии фигур — тонкие, подсвеченного созвездия — ярче. */
