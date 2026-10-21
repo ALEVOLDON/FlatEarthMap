@@ -1,0 +1,48 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Playwright & Video recordings cache
+recordings/
+recordings_v2/
+processed/
+processed_v2/
+audio/
+audio_gtts/
+audio_neural/
+overlays/
+concat_list*.txt
+*.webm
+*.tmp
+
+# Editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
