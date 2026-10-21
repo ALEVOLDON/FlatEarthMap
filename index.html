@@ -120,25 +120,27 @@
       padding: 24px 16px 40px;
     }
 
-    /* Target Project Notice */
-    .target-banner {
-      background: rgba(0, 210, 255, 0.08);
-      border: 1px solid rgba(0, 210, 255, 0.25);
-      border-radius: 12px;
-      padding: 14px 16px;
-      margin-bottom: 24px;
-      display: flex;
+    /* Hero Pill Badge */
+    .hero-badge {
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .target-banner-text {
-      font-size: 13.5px;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 20px;
+      background: rgba(0, 210, 255, 0.08);
+      border: 1px solid rgba(0, 210, 255, 0.22);
       color: #b0d4f1;
-      line-height: 1.5;
+      font-size: 13px;
+      margin-bottom: 16px;
+      line-height: 1.4;
+      flex-wrap: wrap;
+      justify-content: center;
     }
-    .target-banner-text strong { color: #fff; }
+    .hero-badge a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: underline;
+    }
 
     /* Hero */
     .hero {
@@ -564,20 +566,15 @@
 
   <div class="container">
 
-    <!-- Notice Banner -->
-    <div class="target-banner">
-      <div class="target-banner-text">
-        📌 <strong>Сайт-видеопрезентация и исследование.</strong> Сам интерактивный веб-сервис доступен на официальном хостинге:
-      </div>
-      <a href="https://femap.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding:7px 14px; font-size:13px; flex-shrink:0;">
-        Открыть femap.onrender.com ↗
-      </a>
-    </div>
-
     <!-- Hero Header -->
     <header class="hero">
+      <div class="hero-badge">
+        <span>🎬 Презентационный хаб</span>
+        <span style="opacity:0.4;">•</span>
+        <span>Оригинальное веб-приложение: <a href="https://femap.onrender.com/" target="_blank" rel="noopener noreferrer">femap.onrender.com ↗</a></span>
+      </div>
       <h1>Видеопрезентация и обзор проекта <span>FlatEarthMap</span></h1>
-      <p>Полный 6-минутный разбор функционала картографического и астрономического движка сайта <a href="https://femap.onrender.com/" target="_blank">femap.onrender.com</a>: азимутальная эквидистантная проекция, геодезическая линейка, реальные трансокеанские авиарейсы, баллистика МКС и небесная механика.</p>
+      <p>Подробный интерактивный видеоразбор картографического и астрономического движка сайта <a href="https://femap.onrender.com/" target="_blank" rel="noopener noreferrer">femap.onrender.com</a>: азимутальная эквидистантная проекция, геодезическая линейка, реальные трансокеанские авиарейсы, баллистика МКС и небесная механика.</p>
     </header>
 
     <!-- Video & Interactive Chapters -->
@@ -592,7 +589,7 @@
       <div class="chapters-panel">
         <div class="chapters-header">
           <h3>⏱ Главы видео</h3>
-          <span style="font-size:12px; color:var(--muted);">10 глав • 6:01 мин</span>
+          <span style="font-size:12px; color:var(--muted);">10 глав • 4:35 мин</span>
         </div>
         <div class="chapters-list">
           <div class="chapter-card active" onclick="seek(0, this)">
@@ -816,7 +813,7 @@
       <p>Оригинальный интерактивный проект с полным набором инструментов доступен онлайн на официальном хостинге:</p>
       <div class="cta-buttons">
         <a href="https://femap.onrender.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:15px; padding:12px 22px;">🌐 Открыть femap.onrender.com ↗</a>
-        <a href="assets/presentation.mp4" download class="btn btn-secondary" style="font-size:15px; padding:12px 22px;">⬇ Скачать видео (1080p, 38 МБ)</a>
+        <a href="assets/presentation.mp4" download class="btn btn-secondary" style="font-size:15px; padding:12px 22px;">⬇ Скачать видео (1080p, 29 МБ)</a>
         <a href="https://github.com/ALEVOLDON/FlatEarthMap" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="font-size:15px; padding:12px 22px;">⭐ Код на GitHub</a>
       </div>
     </div>
